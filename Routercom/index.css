@@ -1,0 +1,11 @@
+.Navdiv{
+ font-size: medium;
+ background-color: rgba(109, 147, 174, 0.759);
+ height: 60px;
+ width: 100%;
+ border-radius: 25px;
+}
+*li{
+ text-decoration: none;
+  list-style: none;
+}
