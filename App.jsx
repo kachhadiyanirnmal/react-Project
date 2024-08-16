@@ -1,19 +1,29 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import ItemList from './components/ItemList';
-import AddItem from './components/AddItem';
+import React, { useState } from 'react';
+import Navigation from './Navigation';
+import Footer from './Footer';
+import PublicView from './PublicView';
+import PrivateView from './PrivateView';
 
-const App = () => {
+function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const handleLogin = () => {
+    setIsLoggedIn(true);
+  };
+
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+  };
+
   return (
-    <Router>
-      <div className="container mx-auto">
-        <Routes>
-          <Route path="/" element={<ItemList />} />
-          <Route path="/add" element={<AddItem />} />
-        </Routes>
+    <div className="min-h-screen flex flex-col">
+      <Navigation isLoggedIn={isLoggedIn} onLogin={handleLogin} onLogout={handleLogout} />
+      <div className="flex-grow">
+        {isLoggedIn ? <PrivateView /> : <PublicView />}
       </div>
-    </Router>
+      <Footer />
+    </div>
   );
-};
+}
 
 export default App;
